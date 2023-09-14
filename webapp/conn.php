@@ -1,14 +1,17 @@
 <?php
-    $servername = "localhost";
-    $user = "postgres";
-    $psw = "rossi";
-    $dbname="gis";
+
+    // $servername = "localhost";
+    // $dbname="gis";
+    // $username = "postgres";
+    // $password = "rossi";
 
     // Create connection
-    $conn = pg_connect("host=".$servername." port=5432 dbname=".$dbname." user=".$user." password=".$psw);
+    $conn = pg_connect("host=localhost port=5432 dbname=gis user=postgres password=rossi");
+
+
 
     // Check connection
-    if(!$connection)
-        echo "Error : Unable to establish connection with the database\n";
-    echo "Connected successfully";
+    if(!$conn)
+        die("Error : Unable to establish connection with the database\n");
+    
 ?>
