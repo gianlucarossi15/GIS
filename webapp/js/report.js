@@ -1,7 +1,7 @@
 var view = new ol.View ({
     center: ol.proj.fromLonLat([11.896250157856228, 45.404413176964475]),
     zoom:13,
-    minZoom: 12,
+    minZoom: 1,//12
     maxZoom: 22
 });
 
@@ -58,7 +58,7 @@ var markerFeature;
 var markerStyle = new ol.style.Style({
 image: new ol.style.Icon({
     src: 'images/location-pin.png', // Path to your custom marker icon
-    scale: 1, // Adjust the size of the marker icon as needed
+    scale: 0.5, // Adjust the size of the marker icon as needed
     offset: [0.5, 1], // Adjust the offset to align the marker correctly
     anchor: [0.5, 1], // Set the anchor point to the bottom center of the marker icon
 }),
@@ -69,6 +69,8 @@ document.addEventListener("DOMContentLoaded",  () => {
     var lat = document.getElementById("latitude").value;
     var long = document.getElementById("longitude").value;
     var coordinate = [long, lat];
+
+    console.log(coordinate);
 
     markerFeature = new ol.Feature({
         geometry: new ol.geom.Point(coordinate),

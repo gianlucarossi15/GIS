@@ -2,13 +2,14 @@
 <?php
 
     require_once("conn.php");
-   
+    
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if(!isset($_POST["latitude"]) || $_POST["latitude"]=="" || !isset($_POST["longitude"]) || $_POST["longitude"]=="")
-            header("Location: index.php");
-
-        $longitude=$_POST["longitude"];
-        $latitude=$_POST["latitude"];
+        if(!isset($_POST["latitude"]) || $_POST["latitude"]=="" || !isset($_POST["longitude"]) || $_POST["longitude"]==""){
+            header("Location: index.php?coordinate_missing");
+            exit;
+        }
+        echo $longitude=$_POST["longitude"];
+        echo $latitude=$_POST["latitude"];
         
         $description;
         $image_name;
@@ -21,10 +22,19 @@
         else
             $description="";
         if(is_uploaded_file($_FILES["hole_image"]["tmp_name"])){
-            $set=true;
-            echo "image";
-            $image_name = $_FILES['hole_image']['name'];
-            $target_file = "report_images/". basename($image_name);
+            $type=["image/jpg","image/png","image/jpeg","image/svg"];
+            //if the image format is allowed, we insert it
+            if(in_array($_FILES['hole_image']['type'], $type, TRUE)){
+                $set=true;
+                $image_name = $_FILES['hole_image']['name'];
+                $target_file = "report_images/". basename($image_name);
+            }
+            else{
+                header("Location: index.php?bad_format");
+                exit;
+            }
+                
+            //otherwise we insert the report without the image
         }
         else
             $image_name=NULL;
@@ -33,9 +43,12 @@
         
 
         if($set){
+            
             if(move_uploaded_file($_FILES['hole_image']['tmp_name'],$target_file)){
                 $query = "INSERT INTO public.report (report_date, coordinate, hole_type, description, photo_name, photo_path) VALUES ($1, ST_GeomFromText($2), $3,  $4, $5, $6)";
-                $res=pg_query_params($conn,$query,array($date, $coordinate, $hole_type, $description, $image_name, $target_file));
+                $res = pg_prepare($conn, "query", $query);
+                $res=pg_execute($conn,"query",array($date, $coordinate, $hole_type, $description, $image_name, $target_file));
+
                 if(!$res)
                     header("Location: index.php?upload_failed");
                 else
@@ -47,7 +60,8 @@
         else
         {   
             $query = "INSERT INTO public.report (report_date, coordinate, hole_type, description) VALUES ($1, ST_GeomFromText($2), $3,  $4)";
-            $res=pg_query_params($conn,$query,array($date, $coordinate, $hole_type, $description));
+            $res = pg_prepare($conn, "query", $query);
+            $res=pg_execute($conn,"query",array($date, $coordinate, $hole_type, $description));
             if(!$res)
                 header("Location: index.php?upload_failed");
                 

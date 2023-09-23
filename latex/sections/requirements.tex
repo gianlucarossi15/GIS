@@ -1,0 +1,45 @@
+\section{Analysis of Requirements}
+
+The requirements of the System are divided into three different categories:
+
+\subsection{Functional Requirements}
+    \subsubsection{\textbf{Road registry management according to the norm}} 
+    \begin{itemize}
+    \item \textbf{Application for managing the roads}: It is necessary a GIS Web Application that is accessible via all the major browsers; alternatively a desktop GIS application is acceptable.
+    In both cases, the application has to be responsive (no slow loadings) and user-friendly to use.
+    \item \textbf{Network update}: It is compulsory to maintain the history of changes applied to the Road Graph and its attribute. The changes are applied only by the authorized personnel.
+    \item \textbf{Queries executions}: The data collected and updated must be queryable, with the possibility to export the queries' results, for future analysis.
+    \item \textbf{Map visualization}: The system must show the orthophoto map and the map.
+    \end{itemize}
+
+    
+    \subsubsection{Management of vertical signs}
+    \begin{itemize}
+    \item \textbf{Signs management}: It is required to collect information about the road signs like type of sign, date of installation and many more. The possibility of removing or adding signals must be satisfied.
+    \item \textbf{Police Consultation}: The road status must also be available to the police officers using the same application.
+    \end{itemize}
+
+
+    \subsubsection{\textbf{Management of inspections of the roads conditions}} 
+    \begin{itemize}
+        \item{\textbf{Management of roads state}}: The system must collect the malformations of the road, along with the position and type of damage.
+        It is also necessary to detect the damage to the road signs and the state of safety devices, like road lamps and traffic separators: these are very important to monitor because they could be damaged in case of car crashes, and they must be repaired or substituted.
+     \end{itemize}
+
+     \subsection{Data requirements}
+        \begin{itemize}
+            \item \textbf{Required Data}: Detailed overview regarding the roads managements of the province, including the spatial components, attributes that describe the situation (position of the road sign damages, extension of the damage) and historical changes applied to the road network.
+             \item \textbf{Data Format}:  The geographical must follow the ETRF2000 reference system in accordance with the national standards, with NC5 level of detail.
+             The system must be able to work with all major OGC standard format exchange, i.e. the famous shape format, KML, GeoJSON (JSON version to deal with spatial data) and more.
+             Working with all these OGC standards, the System will be able to work with existing and future technologies, guaranteeing interoperability among different systems.
+        \end{itemize}
+\pagebreak
+\subsection{Non functional Requirements}
+\begin{itemize}
+    \item \textbf{PostgreSQL DBMS}: among the FOSS Database
+    Management Systems is required to use PostgreSQL along with the GIS component to deal with the spatial data.
+     \item \textbf{FOSS Component usage}: The system has to be based on the use of Free and Open Source Software, for its development and future maintenance.
+    \item \textbf{Compliance with the applicable standards}: The System must follow the guidelines drawn up by national and international bodies, like how to handle roads management in accordance with the standards and how data must be collected and handled.
+    \\
+    These procedures ensure data sharing and promote interoperability with other systems within the same domain.
+\end{itemize}
