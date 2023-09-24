@@ -12,7 +12,7 @@ Repository for Geographic Information Systems course for the Master Degree in Co
 ## Installation guideline
 ### Web Application
 1. Clone the repository.
-2. Import the database schema by importing the [database/database.sql](database/database.sq) file present in the database folder.
+2. Import the database schema by importing the [database/database.sql](database/database.sql) file present in the database folder.
 > NOTE: The SQL file creates a database called gis and all the tables and data are present in the public schema
 4. Move the web app folder to the proper htdocs folder in the Apache Web Server folder.
 5. For the connection with the database and your web app you must change the username, password and DB name that you are using, in the [webapp/conn.php](webapp/conn.php):
