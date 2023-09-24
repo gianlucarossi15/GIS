@@ -8,7 +8,13 @@ Repository for Geographic Information Systems course for the Master Degree in Co
 3. Geoserver must be installed on the target machine.
 
 ## Repository structure
-
+```
+├── README.md
+├── webapp --> Web Application code
+├── plugins --> openJUMP plugins code
+├── database --> Database SQL dump
+├── latex --> Report Latex
+```
 ## Installation guideline
 ### Web Application
 1. Clone the repository.
