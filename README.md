@@ -1,6 +1,8 @@
 # Geographic Information Systems 
 Repository for Geographic Information Systems course for the Master Degree in Computer Engineering, curriculum Web Application and Data Engineering at the University of Padua.
 
+## Introduction
+An Italian province wants to create an information system for the management of its road network extended for about 1000 km.
 
 ## Requirements
 1. PostgreSQL with the Postgis extension must be installed on the target machine.
