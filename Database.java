@@ -59,7 +59,7 @@ public class Database {
 
     WKTReader wkt = new WKTReader(gf);
 
-    String query = "SELECT ST_AsText(coordinate) as coordinate, * FROM report ";
+    String query = "SELECT ST_AsText(coordinate) as coordinate, * FROM report";
 
     try (Statement stmt = conn.createStatement()) {
       ResultSet rs = stmt.executeQuery(query);
