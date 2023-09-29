@@ -50,3 +50,6 @@ log/
 
 # OSX
 .DS_Store
+
+# out folder
+out/
