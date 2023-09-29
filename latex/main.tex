@@ -1,10 +1,18 @@
 \documentclass[a4paper,12pt]{extarticle}
 \usepackage{geometry}
 \usepackage{graphicx}
-\usepackage[dvipsnames]{xcolor}
-\usepackage[pdftex,bookmarks,colorlinks,breaklinks]{hyperref}  
+\usepackage{array}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage[pdftex,bookmarks,colorlinks,breaklinks]{hyperref} 
+\usepackage{multirow} % for multirow cells
+
 \hypersetup{linkcolor=black,citecolor=black,filecolor=black,urlcolor=black} % black links, for printed output
-\geometry{a4paper, top=2 cm, bottom=2 cm, left=3 cm, right=2 cm}
+\geometry{a4paper, top=2 cm, bottom=2 cm, left=2 cm, right=2 cm}
+
+\definecolor{LowRiskColor}{RGB}{255,255,128} 
+\definecolor{MediumRiskColor}{RGB}{255,192,77}   
+\definecolor{HighRiskColor}{RGB}{255,64,64}  
+
 
 \usepackage{graphicx}
 \usepackage{booktabs}

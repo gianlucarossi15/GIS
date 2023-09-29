@@ -53,3 +53,6 @@ log/
 
 # out folder
 out/
+
+workbench-state.xml
+workbench-state.xml.bkp
