@@ -1,13 +1,13 @@
 \section{Preliminary Project}
-This section provides an overview of the road management project for the city of Padova. It covers various aspects like including goals, system functions, databases, technological components, project guidelines, operational aspects, risk management, benefits evaluation and cost evaluation. 
+This section provides an overview of the road management project for the province of Padova. It covers various aspects like including goals, system functions, databases, technological components, project guidelines, operational aspects, risk management, benefits evaluation and cost evaluation. 
 
 \subsection{Goals}
-To ensure the successful development, implementation and utilization of the system, the road registry and road signs management project for the Municipality of Padova has defined specific goals. These objectives fall into two main categories: overarching goals and intermediate goals. They not only provide clear direction for our project team but also serve as quantifiable benchmarks to evaluate the project's overall success.
+To ensure the successful development, implementation and utilization of the system, the road registry and road signs management project for the province of Padova has defined specific goals. These objectives fall into two main categories: overarching goals and intermediate goals. They not only provide clear direction for our project team but also serve as quantifiable benchmarks to evaluate the project's overall success.
 
 \subsubsection{Overarching Goals}
 \begin{itemize}
     \item\textbf {Develop a complete road management system:}
-    The primary goal of the project is to design, develop and implement a complete road management system based on the requirements of the city of Padova. The system will enable efficient management of the road network, including the documentation of road signals and safety devices, the inspection of road conditions and allowing citizen to report malformations on the road surface.
+    The primary goal of the project is to design, develop and implement a complete road management system based on the requirements of the province of Padova. The system will enable efficient management of the road network, including the documentation of road signals and safety devices, the inspection of road conditions and allowing citizen to report malformations on the road surface.
     \item\textbf {Ensure user-friendly access and compatibility:}
     The system should provide a user-friendly interface accessible through web browsers such as Chrome and Firefox. Then it should also support specific functionality through customized desktop GIS tools when necessary. Compatibility and ease of use are essential to ensure widespread adoption and efficient utilization by  internal office technicians and citizens.
     \item\textbf {Adhere to relevant standards and regulations:}
@@ -26,7 +26,7 @@ To ensure the successful development, implementation and utilization of the syst
 \end{itemize}
 
 \subsection{System overview}
-Here it will outlined the technologies, both hardware and software, used in desktop application and web application in the proposed system, to browse the information regarding the status of the road network for the Padova municipality.
+Here it will outlined the technologies, both hardware and software, used in desktop application and web application in the proposed system, to browse the information regarding the status of the road network for the Padova province.
 
 \subsubsection{Database}
 From the specification, it is known that the IT department uses the FOSS DBMS PostgreSQL: it is necessary to install the geography components PostGIS, in order to achieve the maintenance of the geographical information of the road status.
@@ -39,7 +39,7 @@ Mininum hardware requirements for the user's terminals will be given.
 \subsubsection{Web Application GIS System}
 The web application is composed by the following components:
 \begin{itemize}
-    \item front-end application: this will be the available end-user interface to the system. The citizens will insert reports, while the technicians and the police officers will consult the status of the road status.
+    \item front-end application: this will be the available end-user interface to the system. The citizens will insert reports, while the technicians and the police officers will consult the status of the road status. The specialized team will insert information on the status of the road, like safety device damage or malformation of the road surface.
     Here a background map will displayed, along with the road network.
     \item back-end application: here the processing will take place: possibility of list all reports submitted, the report submission and more.
     \item database application: this part will store the information regarding the road network status.
@@ -99,11 +99,13 @@ The hardware requirements for the System are:
      \item \textbf{UPS} ( Uninterruptible Power Supplies) used to ensure continual power supply to the servers of the System, even when the main power supply fail.
  \end{itemize}
 
+The Web Application is accessible through to the Web Server positioned in the DMZ zone, that is publicly available to the citizens of the Padova province. \\
+On the other hand, the plugins is restricted to the employees of the provincial office in the province internal network.
  \subsection{Functionality of the System}
  In this section will be outlined the core functionalites of the Web Application and of the plugins developed for openJUMP.
 
  \subsubsection{Web Application}
- The Web Application developed is used by the citizens of the Padova municipality to signal the presence of malformations in the road network, and used by the technician of the Provincial office to visualize which reports have been submitted by the citizens. 
+ The Web Application developed is used by the citizens of the Padova province to signal the presence of malformations in the road network, and used by the technician of the Provincial office to visualize which reports have been submitted by the citizens. 
  \begin{itemize}
     \newpage
      \item \textbf{HOMEPAGE}
@@ -118,7 +120,7 @@ The hardware requirements for the System are:
         \caption{Report form}
        \end{figure}
 
- In the homepage, it is possible to see the map displaying the road network of Padova municipality.
+ In the homepage, it is possible to see the map displaying the road network of Padova province.
  to submit the report, the user must insert the position by clicking on the map or by using the GPS coordinate of the device.
  In the second figure is present the report form for the submission.
 
@@ -130,7 +132,7 @@ The hardware requirements for the System are:
         \centering
         \includegraphics[width=0.7\textwidth]{images/login.png}
         \caption{Position pin}
-        \label{fig:yourlabel}
+        \label{oj_login}
     \end{figure}
     To manage unauthorized users, the system is provided of an authentication mechanism made available by the login page; only the technician of the provincial office and the police officers can access to the restricted area by performing the login operation.
 
@@ -169,7 +171,7 @@ The hardware requirements for the System are:
  \subsubsection{openJUMP plugins}
 The OpenJump plugins are used by the tehchnicians of the Provincial office to visualize where all the reports are located and then to compute a road route starting from the garage where the truck is stationed that connects the positions relative to all the reports and returns to the
 starting point.
-The plugin is implemented by 4 classes:
+The plugin is implemented by 5 classes:
 \begin{itemize}
     \item\textbf{Login.java}
     By entering username and password, it allows the user to login in the system to use the plugins. It is responsible for creating the login form. 
@@ -232,20 +234,26 @@ We will use OpenJUMP as GIS desktop software: the open source nature of OpenJUMP
 
  From the given shape files we have:
  \begin{itemize}
-     \item \textbf{SHED}: this entity is associated with the position of the shed where the truck that carries out the road maintenance starts. 
-     \item \textbf{ROAD}: this entity is referred to the geometries and informations of the Provincial road network.
+     \item \textbf{SHED}: this entity is associated with the position of the shed where the truck that carries out the road maintenance starts. This entity stores the given shed information provided by the customer document. 
+     \item \textbf{ROAD}: this entity is referred to the geometries and informations of the Provincial road network. It stores the id of the road along with.
+     Also this entity stores the given shed information provided by the customer document.
+     
  \end{itemize} 
  The remaining entities are necessary to comply with the system specification: \textbf{USER} used to login the specialized team, enabling them to manage the road network informations. This entity is also used to store the authorized police officers that can query the state of the road infrastructure.
  \\
  The specialized team member can create three different types of report:
  \begin{itemize}
-     \item \textbf{SD\_OPERATION}: report regarding the status of a specific safety device in a specific road. 
-     The road sign is specified by the \textbf{SAFETY DEVICE} entity connected by the \textbf{HAS} relationship.
-     \item \textbf{M\_OPERATION}: report regarding information of a specific malformation present in a specific road. The malformation informations are associated to only \textbf{one} entry of the \textbf{MALFORMATION} entity.
-     \item \textbf{RD\_OPERATION}: this report is used to signal the presence of alteration to a specific road sign of a road. The road sign report is referred to only \textbf{one} road sign defined by the \textbf{ROAD SIGN}.
+     \item \textbf{SD\_OPERATION}: report regarding the status of a specific safety device in a specific road. If a safety device needs to be replaced, the specialized team will insert the new date of installation of the new safety device and it has to be moved, the new position of the safety device. 
+     Position is stored as geometry attribute of the \textbf{SAFETY DEVICE} entity. The date is automatically extracted from the device on which the report filling is taking place.
+     The road sign is specified by the \textbf{SAFETY DEVICE} entity connected by the \textbf{HAS} relationship. 
+     \item \textbf{M\_OPERATION}: report regarding information of a specific malformation present in a specific road. The malformation informations are associated to only \textbf{one} entry of the \textbf{MALFORMATION} entity. When the team goes there to inspect the road, it inserts the coordinates of where the damage is present in that specific road. Here it is also stored the position of a malformation since a malformation could be associated to more than one intervention: same damage to the road surface in different times.
+     \item \textbf{RD\_OPERATION}: this report is used to signal the presence of alteration to a specific road sign of a road. The road sign report is referred to only \textbf{one} road sign defined by the \textbf{ROAD SIGN}. The road sign is associated with support type, the type of the signal that it is referring to, when its film will expire and when it was installed. Each road sign is associated to a position stored in geometry column, inserted by the specialized team when it installed the signal.
+     If a road signal needs to be replaced, its corresponding entry is the \textbf{ROAD SIGN} table is updated with the new date of installation. 
  \end{itemize}
+    The Date attribute of the three above entities, stores the date on which the report filling made by the specialized team has been made.
+ 
  Each one of these entities stores the information regarding a specific \textit{road sign}, \textit{safety device} and \textit{malformation} through out the time.\\
- Each user can create more reports, but each report is associated only to a specific user.
+ Each user can create more reports, but each report is associated only to a specific user.  
 
  The citizens creates a new \textbf{REPORT} specifying: the \textit{position}, \textit{extension} of the damage, a brief \textit{description} and the \textit{type} of road object that he/she wants to make a report for. The types are associated to: \textit{road sign}, \textit{safety device} and \textit{malformation}.
  
@@ -259,6 +267,10 @@ We will use OpenJUMP as GIS desktop software: the open source nature of OpenJUMP
       \item the query time is lower with the respect to a single table because the number of entries to scan are only associated to the specific road object that it wants to know information about. When the member of the team would like to query a specific road object, it will query the \textit{report} table to know the type and its position, in order to organize its maintenance.
       \item it also helpful to understand which tables is larger and to increase only its STORAGE MEMORY accordingly.
  \end{itemize}
-
+Regarding the amount of database access, it is necessary the creates indexes for the following tables to speed up the response time:
+\begin{itemize}
+    \item \textbf{REPORT}: since the Padova province has a not indifferent number of citizens, index here is crucial to not make the people wait when they submit the reports, to not ruin the user experience.
+    \item \textbf{ROADS}: each road is associated to at least a malformation, road sign or safety device entry: to not slow down the operation required and possibly overload of the database server, the index would be important for the overall system health.
+\end{itemize}
  \subsubsection{Security}
  In the Database, data before that is going to be insert into the database is properly sanitized and check validated, to ensure no potential threats can cause problems to the Database server, i.e. SQL Injection. 
